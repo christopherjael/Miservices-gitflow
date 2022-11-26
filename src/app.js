@@ -10,17 +10,15 @@ const PORT = process.env.PORT || 3000;
 
 const paths = {
   v1: {
-    home: '/api/v1/',
+    home: '/api/v1',
     urlshorter: '/api/v1/urlshorter/',
     timeslamp: '/api/v1/timeslamp/',
     exerciseTracker: '/api/v1/exercisetracker/',
-    requesHeader: '/api/v1/requesheader/',
-    fileMetadata: '/api/v1/filemetadata/',
   },
 };
 
 //connect to mongodb
-dbClient();
+//dbClient();
 
 app.use(morgan('dev'));
 app.use(cors());
@@ -42,6 +40,14 @@ app.use(paths.v1.home, (req, res, next) => {
   return res.status(200).json({
     status: 'ok',
     msg: 'Welcome to Miservices',
+    services: paths.v1,
+  });
+});
+
+app.all('*', (req, res, next) => {
+  return res.status(404).json({
+    status: 'PAGE NOT FOUND',
+    services: paths.v1,
   });
 });
 

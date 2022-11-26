@@ -1,10 +1,11 @@
-const ShortURLs = require('../models/shortURLs.js');
+const { ShortURLs } = require('../db/config');
 
 module.exports = async (req, res, next) => {
   let { short_url } = req.params;
   try {
-    const existShortURL = await ShortURLs.findOne({ shortURL: short_url });
-    console.log(short_url);
+    const existShortURL = await ShortURLs.findOne({
+      shortURL: short_url,
+    }).exec();
     if (!existShortURL) {
       return res.status(400).json({
         status: 400,

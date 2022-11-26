@@ -1,5 +1,5 @@
 const { model, Schema } = require('mongoose');
-const { uuid } = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 
 const ShortURLsSchema = new Schema(
   {
@@ -8,7 +8,7 @@ const ShortURLsSchema = new Schema(
       required: true,
     },
     shortURL: {
-      type: String,
+      type: Number,
       unique: true,
     },
   },
@@ -18,8 +18,8 @@ const ShortURLsSchema = new Schema(
 );
 
 ShortURLsSchema.pre('save', async function (next) {
-  this.shortURL = uuid();
+  this.shortURL = uuidv4();
   next();
 });
 
-module.exports = model('shortURLs', ShortURLsSchema);
+module.exports = ShortURLsSchema;

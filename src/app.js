@@ -36,7 +36,7 @@ app.use(paths.v1.home, (req, res, next) => {
   });
 });
 //urlshorter
-//app.use(paths.v1.urlshorter);
+app.use(paths.v1.urlshorter, require('./v1/routes/shortURL.routes'));
 
 app.listen(PORT, () => {
   console.log('Server lintening on port ', PORT);

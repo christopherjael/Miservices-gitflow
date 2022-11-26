@@ -34,6 +34,9 @@ app.use(paths.v1.timeslamp, require('./v1/routes/timestamp.routes'));
 //urlshorter
 app.use(paths.v1.urlshorter, require('./v1/routes/shortURL.routes'));
 
+//exerciseTracker
+app.use(paths.v1.exerciseTracker, require('./v1/routes/users.routes'));
+
 //home
 app.use(paths.v1.home, (req, res, next) => {
   return res.status(200).json({

@@ -11,11 +11,11 @@ const PORT = process.env.PORT || 3000;
 const paths = {
   v1: {
     home: '/api/v1/',
-    urlshorter: '/api/v1/urlshorter',
-    timeslamp: '/api/v1/timeslamp',
-    exerciseTracker: '/api/v1/exercisetracker',
-    requesHeader: '/api/v1/requesheader',
-    fileMetadata: '/api/v1/filemetadata',
+    urlshorter: '/api/v1/urlshorter/',
+    timeslamp: '/api/v1/timeslamp/',
+    exerciseTracker: '/api/v1/exercisetracker/',
+    requesHeader: '/api/v1/requesheader/',
+    fileMetadata: '/api/v1/filemetadata/',
   },
 };
 
@@ -28,6 +28,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //routes
+//timeslamp
+app.use(paths.v1.timeslamp, require('./v1/routes/timestamp.routes'));
+
+//urlshorter
+app.use(paths.v1.urlshorter, require('./v1/routes/shortURL.routes'));
+
 //home
 app.use(paths.v1.home, (req, res, next) => {
   return res.status(200).json({
@@ -35,8 +41,6 @@ app.use(paths.v1.home, (req, res, next) => {
     msg: 'Welcome to Miservices',
   });
 });
-//urlshorter
-app.use(paths.v1.urlshorter, require('./v1/routes/shortURL.routes'));
 
 app.listen(PORT, () => {
   console.log('Server lintening on port ', PORT);

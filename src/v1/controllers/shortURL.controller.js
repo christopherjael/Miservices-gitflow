@@ -1,4 +1,4 @@
-const ShortURLs = require('../models/shortURLs');
+const { ShortURLs } = require('../db/config');
 const dns = require('dns');
 
 const createShortURL = async (req, res) => {

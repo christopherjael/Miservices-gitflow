@@ -7,6 +7,9 @@ const {
 } = require('../controllers/users.controllers');
 
 const routes = Router();
+const { trackerConnection } = require('../db/config');
+
+trackerConnection();
 
 // create new user
 routes.post('/users', createNewUser);
